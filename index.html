@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зоомагазин</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <header class="bg-white shadow p-4 flex flex-col sm:flex-row sm:justify-between items-center">
+    <div class="text-xl font-bold mb-2 sm:mb-0">Зоомагазин</div>
+    <nav class="flex gap-4">
+      <a href="#about" class="text-blue-600 hover:underline">О фирме</a>
+      <a href="#catalog" class="text-blue-600 hover:underline">Каталог</a>
+      <a href="#offers" class="text-blue-600 hover:underline">Акции</a>
+      <a href="#contacts" class="text-blue-600 hover:underline">Контакты</a>
+    </nav>
+  </header>
+
+  <main class="p-4">
+    <!-- О ФИРМЕ -->
+    <section id="about" class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">О нашей фирме</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <p>Мы заботимся о домашних животных и предлагаем только качественные товары.</p>
+        <div class="mt-4 bg-gray-200 h-48 flex items-center justify-center rounded">[Место для картинки фирмы]</div>
+      </div>
+    </section>
+
+    <!-- КАТАЛОГ -->
+    <section id="catalog" class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">Каталог товаров</h2>
+      <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="bg-white p-4 rounded shadow">Собаки</div>
+        <div class="bg-white p-4 rounded shadow">Кошки</div>
+        <div class="bg-white p-4 rounded shadow">Птицы</div>
+        <div class="bg-white p-4 rounded shadow">Грызуны</div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="productList">
+        <!-- JS добавит товары -->
+      </div>
+    </section>
+
+    <!-- АКЦИИ -->
+    <section id="offers" class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">Наши акции</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <ul class="list-disc list-inside">
+          <li>Скидка 10% на первый заказ</li>
+          <li>Каждая 5-я покупка — в подарок!</li>
+        </ul>
+        <div class="mt-4 bg-gray-200 h-48 flex items-center justify-center rounded">[Место для баннера акции]</div>
+      </div>
+    </section>
+
+    <!-- БОНУСЫ -->
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">Бонусная система</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <p>Ваши баллы: <span id="bonusPoints">0</span></p>
+        <button id="donateBtn" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Пожертвовать баллы</button>
+        <div class="mt-4 bg-gray-200 h-32 flex items-center justify-center rounded">[Место для изображения с благотворительностью]</div>
+      </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts">
+      <h2 class="text-lg font-semibold mb-2">Контакты</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <p>Email: info@zooshop.ru</p>
+        <p>Телефон: +7 (900) 123-45-67</p>
+        <p>Адрес: г. Москва, ул. Пушкинская, д. 10</p>
+        <div class="mt-4 bg-gray-200 h-48 flex items-center justify-center rounded">[Место для карты или фото магазина]</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const products = [
+      { name: 'Корм для собак', price: 500 },
+      { name: 'Лоток для кошек', price: 800 },
+      { name: 'Игрушка для грызунов', price: 300 },
+    ];
+
+    const productList = document.getElementById('productList');
+    const bonusSpan = document.getElementById('bonusPoints');
+    let bonusPoints = parseInt(localStorage.getItem('bonus') || '0');
+    bonusSpan.textContent = bonusPoints;
+
+    products.forEach((product, i) => {
+      const card = document.createElement('div');
+      card.className = 'bg-white p-4 rounded shadow';
+      card.innerHTML = `
+        <h3 class="font-bold">${product.name}</h3>
+        <p>${product.price} ₽</p>
+        <div class="bg-gray-200 h-24 my-2 rounded flex items-center justify-center">[Картинка товара]</div>
+        <button class="mt-2 bg-green-500 text-white px-3 py-1 rounded" onclick="addToCart(${i})">Купить</button>
+      `;
+      productList.appendChild(card);
+    });
+
+    function addToCart(index) {
+      bonusPoints += 5;
+      localStorage.setItem('bonus', bonusPoints);
+      bonusSpan.textContent = bonusPoints;
+      alert(`Добавлено в корзину. +5 бонусов!`);
+    }
+
+    document.getElementById('donateBtn').onclick = () => {
+      if (bonusPoints >= 10) {
+        bonusPoints -= 10;
+        localStorage.setItem('bonus', bonusPoints);
+        bonusSpan.textContent = bonusPoints;
+        alert('Спасибо! Ваши бонусы пошли на помощь животным 🐾');
+      } else {
+        alert('Недостаточно баллов. Нужно минимум 10.');
+      }
+    };
+  </script>
+</body>
+</html>
