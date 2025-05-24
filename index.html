@@ -9,7 +9,7 @@
 </head>
 <body class="bg-gray-100 text-gray-900">
   <header class="bg-white shadow p-4 flex flex-col sm:flex-row sm:justify-between items-center">
-    <div class="text-xl font-bold mb-2 sm:mb-0">Зоомагазин</div>
+    <div class="text-xl font-bold mb-2 sm:mb-0">🐾 Зоомагазин</div>
     <nav class="flex gap-4">
       <a href="#about" class="text-blue-600 hover:underline">О фирме</a>
       <a href="#catalog" class="text-blue-600 hover:underline">Каталог</a>
@@ -18,25 +18,70 @@
     </nav>
   </header>
 
+  <!-- Пользовательская информация -->
+  <div class="bg-blue-50 p-3 border-l-4 border-blue-400">
+    <div class="flex justify-between items-center">
+      <span>Пользователь: <span id="userName" class="font-semibold">Гость</span></span>
+      <span>Баллы: <span id="bonusPoints" class="font-bold text-blue-600">0</span> 💎</span>
+    </div>
+  </div>
+
   <main class="p-4">
     <!-- О ФИРМЕ -->
     <section id="about" class="mb-6">
       <h2 class="text-lg font-semibold mb-2">О нашей фирме</h2>
       <div class="bg-white p-4 rounded shadow">
-        <p>Мы заботимся о домашних животных и предлагаем только качественные товары.</p>
-        <div class="mt-4 bg-gray-200 h-48 flex items-center justify-center rounded">[Место для картинки фирмы]</div>
+        <p>Мы заботимся о домашних животных и предлагаем только качественные товары. Наша бонусная система позволяет зарабатывать баллы и помогать бездомным животным!</p>
+        <div class="mt-4 bg-gradient-to-r from-green-200 to-blue-200 h-48 flex items-center justify-center rounded">
+          <div class="text-center">
+            <div class="text-4xl mb-2">🏪🐕🐈</div>
+            <div class="text-gray-700">Лучший зоомагазин в городе</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- СИСТЕМА БОНУСОВ -->
+    <section class="mb-6">
+      <h2 class="text-lg font-semibold mb-2">Система бонусов</h2>
+      <div class="bg-white p-4 rounded shadow">
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="bg-gray-100 p-2 rounded">До 150₽ → 5 💎</div>
+          <div class="bg-gray-100 p-2 rounded">151-300₽ → 10 💎</div>
+          <div class="bg-gray-100 p-2 rounded">301-500₽ → 20 💎</div>
+          <div class="bg-gray-100 p-2 rounded">501-750₽ → 35 💎</div>
+          <div class="bg-gray-100 p-2 rounded">751-1000₽ → 50 💎</div>
+          <div class="bg-gray-100 p-2 rounded">1000₽+ → 75 💎</div>
+        </div>
+        <div class="mt-3 text-center">
+          <button id="donateBtn" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition-colors">
+            💗 Пожертвовать 50 баллов на помощь животным
+          </button>
+        </div>
       </div>
     </section>
 
     <!-- КАТАЛОГ -->
     <section id="catalog" class="mb-6">
       <h2 class="text-lg font-semibold mb-2">Каталог товаров</h2>
+      
+      <!-- Категории -->
       <div class="grid grid-cols-2 gap-4 mb-4">
-        <div class="bg-white p-4 rounded shadow">Собаки</div>
-        <div class="bg-white p-4 rounded shadow">Кошки</div>
-        <div class="bg-white p-4 rounded shadow">Птицы</div>
-        <div class="bg-white p-4 rounded shadow">Грызуны</div>
+        <button class="category-btn bg-white p-3 rounded shadow hover:bg-blue-50 transition-colors" data-category="dogs">
+          🐕 Собаки
+        </button>
+        <button class="category-btn bg-white p-3 rounded shadow hover:bg-blue-50 transition-colors" data-category="cats">
+          🐈 Кошки
+        </button>
+        <button class="category-btn bg-white p-3 rounded shadow hover:bg-blue-50 transition-colors" data-category="birds">
+          🦜 Птицы
+        </button>
+        <button class="category-btn bg-white p-3 rounded shadow hover:bg-blue-50 transition-colors" data-category="rodents">
+          🐹 Грызуны
+        </button>
       </div>
+
+      <!-- Товары -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="productList">
         <!-- JS добавит товары -->
       </div>
@@ -46,21 +91,17 @@
     <section id="offers" class="mb-6">
       <h2 class="text-lg font-semibold mb-2">Наши акции</h2>
       <div class="bg-white p-4 rounded shadow">
-        <ul class="list-disc list-inside">
+        <ul class="list-disc list-inside space-y-1">
           <li>Скидка 10% на первый заказ</li>
-          <li>Каждая 5-я покупка — в подарок!</li>
+          <li>Каждая 5-я покупка — дополнительные бонусы!</li>
+          <li>За пожертвование получите особый статус 🌟</li>
         </ul>
-        <div class="mt-4 bg-gray-200 h-48 flex items-center justify-center rounded">[Место для баннера акции]</div>
-      </div>
-    </section>
-
-    <!-- БОНУСЫ -->
-    <section class="mb-6">
-      <h2 class="text-lg font-semibold mb-2">Бонусная система</h2>
-      <div class="bg-white p-4 rounded shadow">
-        <p>Ваши баллы: <span id="bonusPoints">0</span></p>
-        <button id="donateBtn" class="mt-2 bg-blue-500 text-white px-4 py-2 rounded">Пожертвовать баллы</button>
-        <div class="mt-4 bg-gray-200 h-32 flex items-center justify-center rounded">[Место для изображения с благотворительностью]</div>
+        <div class="mt-4 bg-gradient-to-r from-yellow-200 to-orange-200 h-48 flex items-center justify-center rounded">
+          <div class="text-center">
+            <div class="text-4xl mb-2">🎉</div>
+            <div class="text-gray-700 font-semibold">Специальные предложения</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -68,55 +109,228 @@
     <section id="contacts">
       <h2 class="text-lg font-semibold mb-2">Контакты</h2>
       <div class="bg-white p-4 rounded shadow">
-        <p>Email: info@zooshop.ru</p>
-        <p>Телефон: +7 (900) 123-45-67</p>
-        <p>Адрес: г. Москва, ул. Пушкинская, д. 10</p>
-        <div class="mt-4 bg-gray-200 h-48 flex items-center justify-center rounded">[Место для карты или фото магазина]</div>
+        <div class="space-y-2">
+          <p>📧 Email: info@zooshop.ru</p>
+          <p>📞 Телефон: +7 (900) 123-45-67</p>
+          <p>📍 Адрес: г. Москва, ул. Пушкинская, д. 10</p>
+        </div>
+        <div class="mt-4 bg-gradient-to-r from-green-200 to-teal-200 h-48 flex items-center justify-center rounded">
+          <div class="text-center">
+            <div class="text-4xl mb-2">🗺️</div>
+            <div class="text-gray-700">Наш магазин на карте</div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <script>
-    const products = [
-      { name: 'Корм для собак', price: 500 },
-      { name: 'Лоток для кошек', price: 800 },
-      { name: 'Игрушка для грызунов', price: 300 },
-    ];
+    // Инициализация Telegram WebApp
+    let tg = window.Telegram?.WebApp;
+    let userId = null;
+    let userName = 'Гость';
 
-    const productList = document.getElementById('productList');
-    const bonusSpan = document.getElementById('bonusPoints');
-    let bonusPoints = parseInt(localStorage.getItem('bonus') || '0');
-    bonusSpan.textContent = bonusPoints;
-
-    products.forEach((product, i) => {
-      const card = document.createElement('div');
-      card.className = 'bg-white p-4 rounded shadow';
-      card.innerHTML = `
-        <h3 class="font-bold">${product.name}</h3>
-        <p>${product.price} ₽</p>
-        <div class="bg-gray-200 h-24 my-2 rounded flex items-center justify-center">[Картинка товара]</div>
-        <button class="mt-2 bg-green-500 text-white px-3 py-1 rounded" onclick="addToCart(${i})">Купить</button>
-      `;
-      productList.appendChild(card);
-    });
-
-    function addToCart(index) {
-      bonusPoints += 5;
-      localStorage.setItem('bonus', bonusPoints);
-      bonusSpan.textContent = bonusPoints;
-      alert(`Добавлено в корзину. +5 бонусов!`);
+    if (tg) {
+      tg.ready();
+      tg.expand();
+      
+      // Получаем данные пользователя из Telegram
+      if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+        userId = tg.initDataUnsafe.user.id;
+        userName = tg.initDataUnsafe.user.first_name || 'Пользователь';
+      }
     }
 
-    document.getElementById('donateBtn').onclick = () => {
-      if (bonusPoints >= 10) {
-        bonusPoints -= 10;
-        localStorage.setItem('bonus', bonusPoints);
-        bonusSpan.textContent = bonusPoints;
-        alert('Спасибо! Ваши бонусы пошли на помощь животным 🐾');
-      } else {
-        alert('Недостаточно баллов. Нужно минимум 10.');
+    // Если Telegram недоступен, создаем временный ID
+    if (!userId) {
+      userId = 'demo_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    document.getElementById('userName').textContent = userName;
+
+    // Товары с разными ценами для демонстрации бонусной системы
+    const products = [
+      { name: 'Лакомство для кошек', price: 120, category: 'cats', emoji: '🐱' },
+      { name: 'Игрушка мышка', price: 200, category: 'cats', emoji: '🐭' },
+      { name: 'Корм для собак (1кг)', price: 450, category: 'dogs', emoji: '🐕' },
+      { name: 'Поводок кожаный', price: 680, category: 'dogs', emoji: '🦮' },
+      { name: 'Клетка для хомяка', price: 890, category: 'rodents', emoji: '🐹' },
+      { name: 'Корм премиум (5кг)', price: 1200, category: 'dogs', emoji: '🥘' },
+      { name: 'Зерно для попугаев', price: 380, category: 'birds', emoji: '🦜' },
+      { name: 'Витамины для птиц', price: 280, category: 'birds', emoji: '💊' },
+    ];
+
+    let currentCategory = 'all';
+    let bonusPoints = 0;
+    let purchaseCount = 0;
+
+    // Функция расчета бонусов в зависимости от цены
+    function calculateBonuses(price) {
+      if (price <= 150) return 5;
+      if (price <= 300) return 10;
+      if (price <= 500) return 20;
+      if (price <= 750) return 35;
+      if (price <= 1000) return 50;
+      return 75;
+    }
+
+    // Безопасное сохранение данных с привязкой к пользователю
+    function saveUserData() {
+      const userData = {
+        bonusPoints: bonusPoints,
+        purchaseCount: purchaseCount,
+        lastUpdate: Date.now()
+      };
+      
+      // Используем userId в качестве ключа для предотвращения пересечений
+      const userKey = `zooShop_user_${userId}`;
+      const dataStr = JSON.stringify(userData);
+      
+      // Простая проверка целостности данных
+      const checksum = btoa(dataStr).slice(-8);
+      const secureData = {
+        data: userData,
+        checksum: checksum,
+        userId: userId
+      };
+      
+      // Сохраняем в память (в реальном приложении это был бы сервер)
+      window.userDataStorage = window.userDataStorage || {};
+      window.userDataStorage[userKey] = secureData;
+    }
+
+    // Безопасная загрузка данных пользователя
+    function loadUserData() {
+      const userKey = `zooShop_user_${userId}`;
+      
+      // Загружаем из памяти (в реальном приложении это был бы запрос к серверу)
+      window.userDataStorage = window.userDataStorage || {};
+      const secureData = window.userDataStorage[userKey];
+      
+      if (secureData && secureData.userId === userId) {
+        // Проверяем целостность данных
+        const dataStr = JSON.stringify(secureData.data);
+        const expectedChecksum = btoa(dataStr).slice(-8);
+        
+        if (secureData.checksum === expectedChecksum) {
+          bonusPoints = secureData.data.bonusPoints || 0;
+          purchaseCount = secureData.data.purchaseCount || 0;
+        }
       }
-    };
+      
+      updateBonusDisplay();
+    }
+
+    function updateBonusDisplay() {
+      document.getElementById('bonusPoints').textContent = bonusPoints;
+    }
+
+    // Отображение товаров
+    function displayProducts(category = 'all') {
+      const productList = document.getElementById('productList');
+      productList.innerHTML = '';
+
+      const filteredProducts = category === 'all' 
+        ? products 
+        : products.filter(p => p.category === category);
+
+      filteredProducts.forEach((product, i) => {
+        const bonusAmount = calculateBonuses(product.price);
+        const card = document.createElement('div');
+        card.className = 'bg-white p-4 rounded shadow hover:shadow-md transition-shadow';
+        
+        card.innerHTML = `
+          <div class="flex justify-between items-start mb-2">
+            <h3 class="font-bold text-sm">${product.name}</h3>
+            <span class="text-2xl">${product.emoji}</span>
+          </div>
+          <div class="text-lg font-semibold text-green-600 mb-1">${product.price} ₽</div>
+          <div class="text-xs text-blue-600 mb-3">+${bonusAmount} бонусов 💎</div>
+          <div class="bg-gray-100 h-20 mb-3 rounded flex items-center justify-center text-gray-500 text-xs">
+            Фото товара
+          </div>
+          <button class="w-full bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded transition-colors text-sm font-medium" 
+                  onclick="addToCart(${products.indexOf(product)})">
+            🛒 Купить
+          </button>
+        `;
+        productList.appendChild(card);
+      });
+    }
+
+    // Покупка товара
+    function addToCart(index) {
+      const product = products[index];
+      const bonusAmount = calculateBonuses(product.price);
+      
+      bonusPoints += bonusAmount;
+      purchaseCount++;
+      
+      // Бонус за каждую 5-ю покупку
+      if (purchaseCount % 5 === 0) {
+        bonusPoints += 25;
+        showNotification(`🎉 Поздравляем! За 5-ю покупку вы получили дополнительно 25 бонусов!`);
+      }
+      
+      saveUserData();
+      updateBonusDisplay();
+      
+      showNotification(`✅ ${product.name} добавлено в корзину!\n+${bonusAmount} бонусов 💎`);
+    }
+
+    // Пожертвование бонусов
+    function donateBonuses() {
+      if (bonusPoints >= 50) {
+        bonusPoints -= 50;
+        saveUserData();
+        updateBonusDisplay();
+        showNotification('💗 Спасибо! Ваши 50 бонусов пошли на помощь бездомным животным! 🐾\nВы получили особый статус помощника! 🌟');
+      } else {
+        showNotification(`❌ Недостаточно баллов. Нужно минимум 50, у вас: ${bonusPoints}`);
+      }
+    }
+
+    // Уведомления
+    function showNotification(message) {
+      if (tg && tg.showAlert) {
+        tg.showAlert(message);
+      } else {
+        alert(message);
+      }
+    }
+
+    // Обработчики событий
+    document.getElementById('donateBtn').addEventListener('click', donateBonuses);
+
+    // Фильтрация по категориям
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const category = e.target.dataset.category;
+        
+        // Обновляем активную кнопку
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('bg-blue-100'));
+        e.target.classList.add('bg-blue-100');
+        
+        displayProducts(category);
+      });
+    });
+
+    // Инициализация приложения
+    function initApp() {
+      loadUserData();
+      displayProducts();
+      
+      console.log('🐾 Зоомагазин инициализирован');
+      console.log('👤 Пользователь:', userName, '(ID:', userId, ')');
+      console.log('💎 Бонусы:', bonusPoints);
+    }
+
+    // Запуск приложения
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initApp);
+    } else {
+      initApp();
+    }
   </script>
 </body>
 </html>
